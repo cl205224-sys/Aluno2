@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DATES</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        function pesquisar(){
+        let dataInicial = document.querySelector("#dataInicial").value;
+        let dataFinal = document.querySelector("#dataFinal").value;
+
+        if ((dataInicial == '') || (dataFinal == '')) {
+            document.querySelector("#msg").textContent = "Informe um período a ser pesquisado!";
+            document.querySelector("#msg").style.color = "red";
+            document.querySelector("#msg").style.backgroundColor = "yellow";
+        }else{
+        if (dataInicial > dataFinal) {
+            document.querySelector("#msg").textContent = "A data inicial deve ser anterior a data final";
+            document.querySelector("#msg").style.color = "red";
+            document.querySelector("#msg").style.backgroundColor = "";
+        } else{
+            document.querySelector("#msg").textContent = "Processando...";
+            document.querySelector("#msg").style.color = "green";
+        }
+    }
+    }
+    </script>
+</head>
+<body>
+    <h1>Relatório de Vendas por Período</h1>
+    <hr>
+    <form>
+        Data Inicial:
+        <br>
+        <input type="date" id="dataInicial">
+
+        <br><br>
+
+        Data Final:
+        <br>
+        <input type="date" id="dataFinal">
+
+        <br><br>
+
+        <input type="button" value="Buscar" onclick="pesquisar();">
+
+        <br><br>
+
+        <span id="msg"></span>
+    </form>
+    <hr><hr>
+    <h1>Trabalhando com datas</h1>
+    <hr>
+    <div id="resultado"></div>
+    <hr>
+    <h1>Data por extenso</h1>
+    <hr>
+    <div id="resultado1"></div>
+
+    <script>
+        let saida = "";
+        
+        //criando data atual
+        let hoje = new Date();
+        saida += "<p><b>Data atual:<b> " + hoje + "</p>";
+        
+        //criando uma data específica - ano, mes, dia
+        let data = new Date(2025,3,15);
+        saida += "<p><b>Data específica:<b> " + data + "</p>";
+
+        //pegando partes da data
+        let agora = new Date();
+        saida += "<p><b>Ano:<b> " + agora.getFullYear() + "</p>";
+        saida += "<p><b>Mês:<b> " + (agora.getMonth()+1) + "</p>";
+        saida += "<p><b>Dia:<b> " + agora.getDate() + "</p>";
+        saida += "<p><b>Dia da semana:<b> " + agora.getDay() + "</p>";
+        saida += "<p><b>Hora:<b> " + agora.getHours() + "</p>";
+        saida += "<p><b>Minutos:<b> " + agora.getMinutes() + "</p>";
+        saida += "<p><b>Segundos:<b> " + agora.getSeconds() + "</p>";
+        
+        //formatando data (manual)
+        data = new Date();
+        let dia = data.getDate();
+        let mes = data.getMonth();
+        let ano = data.getFullYear();
+        saida += "<p><b>Data formatada:</b> " + dia + "/" + mes + "/" + ano + "</p>";
+
+        //Timestamp
+        let inicio = new Date("2026-05-01");
+        let fim = new Date("2026-05-04");
+
+        saida += "<p><b>Timestamp inicial:</b> " + inicio.getTime() + "</p>";
+        saida += "<p><b>Timestamp fim:</b> " + fim.getTime() + "</p>";
+
+        let diferenca = fim.getTime() - inicio.getTime();
+        saida += "<p><b>Timestamp diferença:</b> " + diferenca + "</p>";
+
+        let dias = diferenca / (1000*60*60*24);
+        saida += "<p><b>Dias de diferença:</b> " + dias + "</p>";
+
+        document.getElementById("resultado").innerHTML = saida;
+
+        let data1 = new Date();
+
+        let dia1 = data1.getDate();
+        let mes1 = data1.getMonth();
+        let ano1 = data1.getFullYear();
+        let diaSemana = data.getDay();
+
+        //arrays
+        let meses = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"]
+        let diasSemana = []
+    </script>
+
+
+
+</body>
+</html>
